@@ -114,10 +114,7 @@ fun MainView(modifier: Modifier = Modifier) {
         ) {
             item{
                 if (weatherState.errorMessage != null) {
-                    Text(
-                        text = weatherState.errorMessage,
-                        color = Color.White
-                    )
+                    ErrorView(weatherState.errorMessage)
                 } else {
                     WeatherCard(weatherState = weatherState)
                 }
