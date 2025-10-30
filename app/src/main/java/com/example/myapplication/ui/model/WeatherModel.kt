@@ -1,19 +1,23 @@
 package com.example.myapplication.ui.model
 
 data class WeatherModel(
-    val cityName: String,
-    val date: String,
+    val cityName: String = "",
+    val date: Int = 0,
 
-    val description: String,
-    val iconUrl: String,
+    val weatherIcon: String = "",
+    val weatherDescription: String = "",
+    val weatherTemperature: Double = 0.0,
 
-    val humidity: Int,
-    val windSpeed: Double,
-    val temperature: Double,
-    val rainVolume: Double,
-    val pressure: Int,
-    val cloudiness: Int,
+    val humidity: Int = 0,
+    val windSpeed: Double = 0.0,
+    val temperature: Double = 0.0,
+    val rainVolume: Double? = null,
+    val pressure: Int = 0,
+    val cloudiness: Int = 0,
 
-    val sunrise: Long,
-    val sunset: Long
+    val sunrise: Int = 0,
+    val sunset: Int = 0,
+
+    val isError: Boolean = false,
+    val errorMessage: String? = null,
 )

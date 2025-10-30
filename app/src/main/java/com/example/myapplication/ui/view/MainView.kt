@@ -20,10 +20,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.myapplication.R
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.ui.Alignment
 
 @Composable
 fun MainView(modifier: Modifier = Modifier) {
-    var text by remember { mutableStateOf("") }
+    var inputCityName by remember { mutableStateOf("") }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -39,8 +46,8 @@ fun MainView(modifier: Modifier = Modifier) {
                 .padding(top = 20.dp)
         ) {
             OutlinedTextField(
-                value = text,
-                onValueChange = { text = it },
+                value = inputCityName,
+                onValueChange = { inputCityName = it },
                 modifier = Modifier
                     .weight(1f),
                 shape = RoundedCornerShape(16.dp),
@@ -71,15 +78,49 @@ fun MainView(modifier: Modifier = Modifier) {
             Spacer(modifier = Modifier.padding(horizontal = 4.dp))
 
             Button(
-                onClick = { }
+                onClick = {
+                    if (inputCityName.isNotBlank()){
+
+                    }
+                },
+                shape = RoundedCornerShape(16.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.White.copy(alpha = 0.10f)
+                ),
+                border = BorderStroke(
+                    width = 1.dp,
+                    color = Color.White.copy(alpha = 0.25f )
+                ),
+                contentPadding = PaddingValues(horizontal = 10.dp, vertical = 16.dp)
+
             ) {
                 Icon(
                     imageVector = Icons.Filled.Search,
                     contentDescription = "Search Icon",
+                    modifier = Modifier.size(16.dp)
                 )
+                Spacer(modifier = Modifier.width(4.dp))
                 Text(
                     "Search"
                 )
+            }
+        }
+
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            item{
+                if (weatherState.errorMessage != null) {
+                    Text(
+                        text = weatherState.errorMessage,
+                        color = Color.White
+                    )
+                } else {
+                    WeatherCard(weatherState = weatherState)
+                }
             }
         }
     }
