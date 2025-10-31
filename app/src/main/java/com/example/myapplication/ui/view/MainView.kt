@@ -27,10 +27,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.ui.Alignment
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun MainView(modifier: Modifier = Modifier) {
     var inputCityName by remember { mutableStateOf("") }
+    val weatherState by viewModel.weather.collectAsState()
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -115,9 +117,7 @@ fun MainView(modifier: Modifier = Modifier) {
             item{
                 if (weatherState.errorMessage != null) {
                     ErrorView(weatherState.errorMessage)
-                } else {
-                    WeatherCard(weatherState = weatherState)
-                }
+                } else if (weatherState.cityName.isBlank())
             }
         }
     }

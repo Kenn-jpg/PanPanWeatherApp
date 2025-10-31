@@ -13,5 +13,6 @@ data class ResponseWeather(
     val timezone: Int,
     val visibility: Int,
     val weather: List<Weather>,
-    val wind: Wind
+    val wind: Wind,
+    val rain: Rain
 )
