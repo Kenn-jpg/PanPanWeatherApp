@@ -17,7 +17,7 @@ class WeatherRepository(private val service: WeatherService) {
             date = response.dt,
 
             weatherIcon = response.weather[0].icon,
-            weatherDescription = response.weather[0].description,
+            weatherCondition = response.weather[0].main,
             weatherTemperature = response.main.temp,
 
             humidity = response.main.humidity,

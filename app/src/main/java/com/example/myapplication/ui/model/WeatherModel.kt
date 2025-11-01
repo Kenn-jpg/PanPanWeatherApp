@@ -5,7 +5,7 @@ data class WeatherModel(
     val date: Int = 0,
 
     val weatherIcon: String = "",
-    val weatherDescription: String = "",
+    val weatherCondition: String = "",
     val weatherTemperature: Double = 0.0,
 
     val humidity: Int = 0,
