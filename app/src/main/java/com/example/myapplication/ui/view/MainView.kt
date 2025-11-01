@@ -28,10 +28,12 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.ui.Alignment
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.myapplication.ui.viewmodel.WeatherViewModel
 
 @Composable
 fun MainView(modifier: Modifier = Modifier) {
     var inputCityName by remember { mutableStateOf("") }
+    val viewModel: WeatherViewModel = viewModel()
     val weatherState by viewModel.weather.collectAsState()
     Column(
         modifier = Modifier
@@ -117,7 +119,19 @@ fun MainView(modifier: Modifier = Modifier) {
             item{
                 if (weatherState.errorMessage != null) {
                     ErrorView(weatherState.errorMessage)
-                } else if (weatherState.cityName.isBlank())
+                } else if (weatherState.cityName.isBlank()) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Search,
+                            contentDescription = "Search",
+                            tint = Color.Gray,
+                            modifier = Modifier.size(40.dp)
+                        )
+                    }
+                }
             }
         }
     }

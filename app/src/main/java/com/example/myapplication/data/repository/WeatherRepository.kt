@@ -23,7 +23,7 @@ class WeatherRepository(private val service: WeatherService) {
             humidity = response.main.humidity,
             windSpeed = response.wind.speed,
             temperature = response.main.temp,
-            rainVolume = response.rain?.'1h'?: 0.0,
+            rainVolume = response.rain?.`1h`?: 0.0,
             pressure = response.main.pressure,
             cloudiness = response.clouds.all,
 
